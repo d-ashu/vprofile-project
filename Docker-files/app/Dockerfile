@@ -4,6 +4,8 @@ RUN git clone https://github.com/d-ashu/vprofile-project.git
 RUN cd vprofile-project && git checkout docker && install mvn
 
 FROM tomcat:9-jre11
+LABEL "project"="Vprofile"
+LABEL "Author"="Ashutosh"
 RUN rm -rf /usr/local/tomcat/webapps/*
 COPY --from=BUILD_IMAGE vprofile-project/target/vprofile-v2.war/ usr/local/tomcat/webapps/ROOT.war
 
