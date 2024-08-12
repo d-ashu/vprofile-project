@@ -3,6 +3,6 @@ LABEL "project"="Vprofile"
 LABEL "Author"="Ashutosh"
 
 ENV MYQSL_ROOT_PASSWORD=Heypukun.98
-ENV MYSQL_DATABASE= "accounts"
+ENV MYSQL_DATABASE=accounts
 
 ADD db_backup.sql docker-entrypoint-initdb.d/db_backup.sql
