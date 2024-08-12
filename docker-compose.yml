@@ -1,0 +1,50 @@
+version : '3.5'
+services:
+  vprodb:
+    build:
+      context: ./Docker-files/db
+    image: dalabehera/vprofiledb
+    conatiner_name: vprodb
+    port:
+      - "3306:3306"
+    volumes:
+      - vprodbdata:/var/lib/mysql
+    environment:
+      - MYSQL_ROO_PASSWORD=Heypukun.98
+    
+
+  vrpocache01:
+    image: memcached
+    port: 
+      - "11211:11211"
+
+  vpromq01:
+    image: rabbitmq
+    port:
+      - "15672:15672"
+    
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+  vproapp:
+    build:
+      context: ./Docker-files/app
+    image: dalabehera/vprofileapp
+    conatiner_name: vproapp
+    port:
+      - "8080:8080"
+    volumes:
+      - vproappdata:/usr/local/tomcat/webapps
+
+  vproweb:
+    build:
+      context: ./Docker-files/web
+    image: dalabehera/vprofileweb
+    conatiner_name: vproweb
+    port:
+      - "80:80"
+volumes:
+    vprodbdata: {}
+    vproappdata: {}
+    
