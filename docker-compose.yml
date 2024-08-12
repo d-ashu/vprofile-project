@@ -5,7 +5,7 @@ services:
       context: ./Docker-files/db
     image: dalabehera/vprofiledb
     conatiner_name: vprodb
-    port:
+    ports:
       - "3306:3306"
     volumes:
       - vprodbdata:/var/lib/mysql
@@ -20,7 +20,7 @@ services:
 
   vpromq01:
     image: rabbitmq
-    port:
+    ports:
       - "15672:15672"
     
     environment:
@@ -32,7 +32,7 @@ services:
       context: ./Docker-files/app
     image: dalabehera/vprofileapp
     conatiner_name: vproapp
-    port:
+    ports:
       - "8080:8080"
     volumes:
       - vproappdata:/usr/local/tomcat/webapps
@@ -42,7 +42,7 @@ services:
       context: ./Docker-files/web
     image: dalabehera/vprofileweb
     conatiner_name: vproweb
-    port:
+    ports:
       - "80:80"
 volumes:
     vprodbdata: {}
