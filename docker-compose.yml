@@ -1,28 +1,26 @@
-version : '3.5'
+version: '3.5'
 services:
   vprodb:
     build:
       context: ./Docker-files/db
     image: dalabehera/vprofiledb
-    conatiner_name: vprodb
+    container_name: vprodb  # Corrected typo
     ports:
       - "3306:3306"
     volumes:
       - vprodbdata:/var/lib/mysql
     environment:
-      - MYSQL_ROO_PASSWORD=Heypukun.98
-    
+      - MYSQL_ROOT_PASSWORD=Heypukun.98  # Corrected variable name
 
   vrpocache01:
     image: memcached
-    port: 
+    ports:  # Changed from 'port' to 'ports'
       - "11211:11211"
 
   vpromq01:
     image: rabbitmq
     ports:
       - "15672:15672"
-    
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
@@ -31,7 +29,7 @@ services:
     build:
       context: ./Docker-files/app
     image: dalabehera/vprofileapp
-    conatiner_name: vproapp
+    container_name: vproapp  # Corrected typo
     ports:
       - "8080:8080"
     volumes:
@@ -41,10 +39,10 @@ services:
     build:
       context: ./Docker-files/web
     image: dalabehera/vprofileweb
-    conatiner_name: vproweb
+    container_name: vproweb  # Corrected typo
     ports:
       - "80:80"
+
 volumes:
-    vprodbdata: {}
-    vproappdata: {}
-    
+  vprodbdata: {}
+  vproappdata: {}
